@@ -19,7 +19,8 @@
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@theme": ["theme/index.ts"],
-      "@theme/*": ["theme/*"]
+      "@theme/*": ["theme/*"],
+      "@config": ["config/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

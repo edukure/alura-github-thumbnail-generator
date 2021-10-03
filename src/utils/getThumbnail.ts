@@ -1,6 +1,8 @@
 import puppeteer from 'puppeteer-core';
 import chrome from 'chrome-aws-lambda';
 
+import { BASE_URL } from '@config';
+
 export async function getOptions() {
   const isDev = !process.env.AWS_REGION;
   let options;
@@ -29,8 +31,6 @@ export async function getOptions() {
 
   return options;
 }
-
-const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000';
 
 export async function getScreenshot(title, type, description) {
   const options = await getOptions();

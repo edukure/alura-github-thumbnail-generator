@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Heading, Image, Text } from '@chakra-ui/react';
 
 import { colors } from '@theme';
+import { BASE_URL } from '@config';
 
 export type Thumbnail = {
   title: string;
@@ -13,7 +14,7 @@ function Thumbnail({ title, description, type }: Thumbnail) {
   return (
     <Box h="640px" w="1280px" position="relative">
       <Image
-        src={`http://localhost:3000/template-${type}.png`}
+        src={`${BASE_URL}/template-${type}.png`}
         alt={`Thumbnail do repositório ${title}`}
       />
       <Box position="absolute" bottom="96px" left="48px" maxW="1184px">
