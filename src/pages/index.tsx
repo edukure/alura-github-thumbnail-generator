@@ -80,6 +80,7 @@ export default function Home() {
               src={url || '/thumbnail-template.png'}
               bg="black"
               onLoad={() => setIsLoading(false)}
+              alt="thumbnail template"
             />
           </Box>
 
