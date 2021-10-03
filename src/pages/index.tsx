@@ -1,56 +1,91 @@
-import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+import React, { useState } from 'react';
+import { Stack, Container, Flex, Image, Box } from '@chakra-ui/react';
 
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+import Header from '../components/Header';
+import Form from '../components/Form';
+import useDebounce from '../hooks/useDebounce';
+import { Thumbnail } from '../components/Thumbnail';
+import buildUrl from '../utils/buildUrl';
 
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-      <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>typescript</Code>.
-      </Text>
+const initialThumbnailInfo: Thumbnail = {
+  title: 'Gerador de Imagens de Capa para o Github',
+  description: 'criado pelo Scuba Team',
+  type: 'front-end',
+};
 
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
+export default function Home() {
+  const [url, setUrl] = useState<string>(null);
+  const [thumbnailInfo, setThumbnailInfo] =
+    useState<Thumbnail>(initialThumbnailInfo);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const downloadThumbnail = async () => {
+    /* náo entendi direito como funciona, mas peguei daqui
+      https://github.com/zhumeisongsong/react-url-image-downloader/blob/main/src/index.tsx
+    */
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.setAttribute('download', `thumbnail-${thumbnailInfo.title}`);
+    document.body.appendChild(link);
+    link.click();
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    downloadThumbnail();
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fieldName = event.target.getAttribute('name');
+
+    setThumbnailInfo({
+      ...thumbnailInfo,
+      [fieldName]: event.target.value,
+    });
+  };
+
+  useDebounce(
+    () => {
+      setIsLoading(true);
+      const newUrl = buildUrl({ ...thumbnailInfo });
+      setUrl(newUrl);
+    },
+    500,
+    [thumbnailInfo]
+  );
+
+  return (
+    <Flex
+      direction="column"
+      alignItems="center"
+      bgGradient="linear(to-b, alura.dark-blue, alura.blue)"
+      minH="100vh"
+    >
+      <Header />
+      <Container centerContent maxW="container.lg">
+        <Stack
+          spacing={8}
+          display="flex"
+          direction="column"
+          alignItems="center"
+        >
+          <Box
+            w="100%"
+            h="100%"
+            bg="white"
+            filter={isLoading ? 'blur(2px)' : ''}
           >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
-    </Main>
+            <Image
+              src={url || '/thumbnail-template.png'}
+              bg="black"
+              onLoad={() => setIsLoading(false)}
+            />
+          </Box>
 
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
-  </Container>
-)
-
-export default Index
+          <Form onSubmit={handleSubmit} onInputChange={handleChange} />
+        </Stack>
+      </Container>
+    </Flex>
+  );
+}
