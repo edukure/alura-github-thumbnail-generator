@@ -30,13 +30,15 @@ export async function getOptions() {
   return options;
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000';
+
 export async function getScreenshot(title, type, description) {
   const options = await getOptions();
   const browser = await puppeteer.launch(options);
 
   const page = await browser.newPage();
   await page.goto(
-    `http://localhost:3000/thumbnail?title=${title}&type=${type}&description=${description}`
+    `${BASE_URL}/thumbnail?title=${title}&type=${type}&description=${description}`
   );
   await page.setViewport({ width: 1280, height: 640 });
   // await page.screenshot({ path: 'example.png' });
