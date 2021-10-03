@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Heading, Image, Text } from '@chakra-ui/react';
 
-import { colors } from '../../theme';
+import { colors } from '@theme';
 
 export type Thumbnail = {
   title: string;

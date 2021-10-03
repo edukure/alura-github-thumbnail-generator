@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getScreenshot } from '../../utils/getThumbnail';
+import { getScreenshot } from '@utils/getThumbnail';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { title, type, description } = req.query;

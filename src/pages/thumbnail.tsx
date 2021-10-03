@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 
-import Thumbnail from '../components/Thumbnail';
+import Thumbnail from '@components/Thumbnail';
 
 function ThumbnailPage({ title, description, type }) {
   return <Thumbnail type={type} title={title} description={description} />;

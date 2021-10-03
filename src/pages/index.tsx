@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Stack, Container, Flex, Image, Box } from '@chakra-ui/react';
 
-import Header from '../components/Header';
-import Form from '../components/Form';
-import useDebounce from '../hooks/useDebounce';
-import { Thumbnail } from '../components/Thumbnail';
-import buildUrl from '../utils/buildUrl';
+import Header from '@components/Header';
+import Form from '@components/Form';
+import useDebounce from '@hooks/useDebounce';
+import { Thumbnail } from '@components/Thumbnail';
+import buildUrl from '@utils/buildUrl';
 
 const initialThumbnailInfo: Thumbnail = {
   title: 'Gerador de Imagens de Capa para o Github',
