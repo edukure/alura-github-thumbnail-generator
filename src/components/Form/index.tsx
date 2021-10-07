@@ -53,7 +53,12 @@ function Form({ onSubmit, onInputChange }) {
               </Select>
             </FormControl>
 
-            <Button colorScheme="teal" type="submit">
+            <Button
+              bg="alura.light-blue"
+              _hover={{ bg: 'alura.blue' }}
+              color="white"
+              type="submit"
+            >
               Download
             </Button>
           </Stack>
