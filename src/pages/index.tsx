@@ -8,8 +8,8 @@ import { Thumbnail } from '@components/Thumbnail';
 import buildUrl from '@utils/buildUrl';
 
 const initialThumbnailInfo: Thumbnail = {
-  title: 'Gerador de Imagens de Capa para o Github',
-  description: 'criado pelo Scuba Team',
+  title: '',
+  description: '',
   type: 'front-end',
 };
 

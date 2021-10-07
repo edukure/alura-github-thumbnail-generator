@@ -24,7 +24,7 @@ function Form({ onSubmit, onInputChange }) {
               <Input
                 type="text"
                 name="title"
-                placeholder="Gerador de Imagens de Capa para o Github"
+                placeholder="Insira o título do curso aqui"
                 onChange={onInputChange}
               />
             </FormControl>
@@ -34,7 +34,7 @@ function Form({ onSubmit, onInputChange }) {
               <Input
                 type="text"
                 name="description"
-                placeholder="criado pelo Scuba Team"
+                placeholder="Insira a descrição (opcional)"
                 onChange={onInputChange}
               />
             </FormControl>
