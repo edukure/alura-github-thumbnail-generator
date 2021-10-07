@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   escola: {
     programacao: '#00c86F',
     'front-end': '#6bd1ff',
@@ -15,3 +15,5 @@ export const colors = {
     'light-blue': '#1875e8',
   },
 };
+
+export default colors;
