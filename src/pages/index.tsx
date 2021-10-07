@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NextHead from 'next/head';
 import { Stack, Container, Flex, Image, Box } from '@chakra-ui/react';
 
 import Header from '@components/Header';
@@ -56,37 +57,42 @@ export default function Home() {
   );
 
   return (
-    <Flex
-      direction="column"
-      alignItems="center"
-      bgGradient="linear(to-b, alura.dark-blue, alura.blue)"
-      minH="100vh"
-    >
-      <Header />
-      <Container centerContent maxW="container.lg">
-        <Stack
-          spacing={8}
-          display="flex"
-          direction="column"
-          alignItems="center"
-        >
-          <Box
-            w="100%"
-            h="100%"
-            bg="white"
-            filter={isLoading ? 'blur(2px)' : ''}
+    <>
+      <NextHead>
+        <title>Alura Github Thumbnail Generator</title>
+      </NextHead>
+      <Flex
+        direction="column"
+        alignItems="center"
+        bgGradient="linear(to-b, alura.dark-blue, alura.blue)"
+        minH="100vh"
+      >
+        <Header />
+        <Container centerContent maxW="container.lg">
+          <Stack
+            spacing={8}
+            display="flex"
+            direction="column"
+            alignItems="center"
           >
-            <Image
-              src={url || '/thumbnail-template.png'}
-              bg="black"
-              onLoad={() => setIsLoading(false)}
-              alt="thumbnail template"
-            />
-          </Box>
+            <Box
+              w="100%"
+              h="100%"
+              bg="white"
+              filter={isLoading ? 'blur(2px)' : ''}
+            >
+              <Image
+                src={url || '/thumbnail-template.png'}
+                bg="black"
+                onLoad={() => setIsLoading(false)}
+                alt="thumbnail template"
+              />
+            </Box>
 
-          <Form onSubmit={handleSubmit} onInputChange={handleChange} />
-        </Stack>
-      </Container>
-    </Flex>
+            <Form onSubmit={handleSubmit} onInputChange={handleChange} />
+          </Stack>
+        </Container>
+      </Flex>
+    </>
   );
 }

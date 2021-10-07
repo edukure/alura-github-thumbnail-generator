@@ -13,6 +13,8 @@ export default class Document extends NextDocument {
             href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
             rel="stylesheet"
           />
+
+          <link rel="icon" href="/assets/favicon.ico" />
         </Head>
         <body>
           {/* Make Color mode to persists when you refresh the page. */}
