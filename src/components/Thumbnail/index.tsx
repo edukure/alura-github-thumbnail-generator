@@ -14,8 +14,8 @@ function Thumbnail({ title, description, type }: Thumbnail) {
   return (
     <Box h="640px" w="1280px" position="relative">
       <Image
-        src={`${BASE_URL}/template-${type}.png`}
-        alt={`Thumbnail do repositório ${title}`}
+        src={`${BASE_URL}/templates/${type}.png`}
+        alt={`Thumbnail do curso ${title}`}
       />
       <Box position="absolute" bottom="96px" left="48px" maxW="1184px">
         <Heading fontSize="56px" color={`escola.${type}`} mb={8}>
