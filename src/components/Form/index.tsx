@@ -12,7 +12,7 @@ import {
 function Form({ onSubmit, onInputChange }) {
   return (
     <Box bg="white" p={8} mb={12} rounded="lg" maxW="container.lg" w="100%">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} autoComplete="off">
         <Stack
           justifyContent="space-around"
           direction={{ base: 'column', sm: 'row' }}
